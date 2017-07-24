@@ -51,7 +51,7 @@ class MySessionHandler extends SessionHandler {
     }
 
     public function __isset($key) {
-        return $_SESSION[$key] ? true : false;
+        return @$_SESSION[$key] ? true : false;
     }
 
     public function read($id) {
