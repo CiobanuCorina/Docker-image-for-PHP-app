@@ -119,7 +119,7 @@ class MySessionHandler extends SessionHandler {
         // to Prevent Session Hijacking Attack (doesn't working with PHP 7+)
         $userAgent = $_SERVER['HTTP_USER_AGENT'];
         $sessionId = session_id();
-        $this->cipherKey = mcrypt_create_iv(32);
+        $this->cipherKey = mcrypt_create_iv(32,  MCRYPT_DEV_RANDOM);
         $this->fingerPrint = sha1($userAgent . $this->cipherKey . $sessionId);
     }
 
@@ -135,7 +135,7 @@ class MySessionHandler extends SessionHandler {
         return false;
     }
 }
-
+global $_sess;
 // Session Start & Control
 if ('' === session_id()) {
     $_sess = new MySessionHandler();

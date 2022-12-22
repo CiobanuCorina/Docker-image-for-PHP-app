@@ -39,21 +39,21 @@ require_once 'app' . DS . 'models' . DS . 'task.php';
     <header>
         <h1>Hi, <span>
                 <?php
-                if (isset($_sess->name)) {
-                    echo $_sess->name;
-                } else {
+//                if (isset($_sess->name)) {
+//                    echo $_sess->name;
+//                } else {
                     echo "Guest";
-                }
+//                }
                 ?>
             </span></h1>
         <?php
-        if (isset($_sess->name)) {
+//        if (isset($_sess->name)) {
             echo '<button class="fa fa-plus" id="add-new"></button>';
-            echo '<button id="logout">Logout</button>';
-        } else {
-            echo '<button id="login">Login</button>
-                    <button id="signup">Signup</button>';
-        }
+//            echo '<button id="logout">Logout</button>';
+//        } else {
+//            echo '<button id="login">Login</button>
+//                    <button id="signup">Signup</button>';
+//        }
         ?>
     </header>
     <!-- Tasks -->
@@ -69,11 +69,11 @@ require_once 'app' . DS . 'models' . DS . 'task.php';
         <div class="tasks-area">
             <?php
             $task = new Tasks('', '', '', '', '');
-            if (isset($_sess->name) && isset($_sess->id)) {
+//            if (isset($_sess->name) && isset($_sess->id)) {
                 $task->getAll();
-            } else {
-                echo '';
-            }
+//            } else {
+//                echo '';
+//            }
             ?>
         </div>
     </section>

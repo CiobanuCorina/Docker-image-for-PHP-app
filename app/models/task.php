@@ -1,6 +1,6 @@
 <?php
 require_once 'db.php';
-require_once 'session.php';
+//require_once 'session.php';
 
 class Tasks extends AbstractModel {
     private $user_id;
@@ -43,11 +43,11 @@ class Tasks extends AbstractModel {
     }
 
     public function getAll() {
-        global $_sess;
+//        global $_sess;
 
         $this->allTasks = parent::getAll();
         foreach ($this->allTasks as $this->obj) {
-            if ($this->obj->user_id == $_sess->id) {
+//            if ($this->obj->user_id == $_sess->id) {
                 $state = ($this->obj->state == 1) ? 'checked' : false;
                 echo "<div class='task-data'>
                 <h1>{$this->obj->title}</h1>
@@ -63,19 +63,19 @@ class Tasks extends AbstractModel {
             </div>";
             }
         }
-    }
+//    }
 }
 
 $task = new Tasks('', '', '', '', '');
-
+//global $_sess;
 if (isset($_POST['add'])) {
-    $task->user_id = $_sess->id;
+//    $task->user_id = $_sess->id;
     $task->title = $_POST['task'];
     $task->description = $_POST['notes'];
     $task->datetime = $_POST['datetime'];
     $task->state = 0;
 
-    $task->create();
+    $task->create($task->title, $task->description, $task->datetime, $task->state);
 } elseif (isset($_POST['delete'])) {
     $task->getByID($_POST['id'])->delete();
 } elseif (isset($_POST['update'])) {

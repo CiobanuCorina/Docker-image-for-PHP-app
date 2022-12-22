@@ -1,6 +1,6 @@
 <?php
 require_once 'db.php';
-require_once 'session.php';
+//require_once 'session.php';
 
 class Users extends AbstractModel {
     private $name;
@@ -37,18 +37,18 @@ class Users extends AbstractModel {
     }
 
     public function login($username, $password) {
-        global $conn, $_sess;
+//        global $conn, $_sess;
 
-        $sql = 'SELECT * FROM ' . static::$tableName . " WHERE `username` = '" . $username . "' AND `password` = '" . $password . "'";
-        $stmt = $conn->prepare($sql);
-        if ($stmt->execute() === true) {
-            $res = array_shift($stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, get_called_class(), array_keys(static::$tableSchema)));
-            $_sess->id = $res->id;
-            $_sess->name = $res->name;
-            return true;
-        } else {
-            return false;
-        }
+//        $sql = 'SELECT * FROM ' . static::$tableName . " WHERE `username` = '" . $username . "' AND `password` = '" . $password . "'";
+//        $stmt = $conn->prepare($sql);
+//        if ($stmt->execute() === true) {
+//            $res = array_shift($stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, get_called_class(), array_keys(static::$tableSchema)));
+//            $_sess->id = $res->id;
+//            $_sess->name = $res->name;
+//            return true;
+//        } else {
+//            return false;
+//        }
     }
 
     public function register() {
@@ -72,7 +72,7 @@ if (isset($_POST['register'])) {
 } elseif (isset($_POST['login'])) {
     $user->login($_POST['username'], md5($_POST['password']));
 } elseif (isset($_POST['logout'])) {
-    $_sess->kill();
+//    $_sess->kill();
 } else {
     return false;
 }

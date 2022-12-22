@@ -27,9 +27,10 @@ class AbstractModel {
         return trim($namedParams, ', ');
     }
 
-    public function create() {
+    public function create($title, $description, $datetime, $state) {
         global $conn;
-        $sql = 'INSERT INTO ' . static::$tableName . ' SET ' . self::buildSQLParameters();
+        $sql = 'INSERT INTO ' . static::$tableName . ' SET title = ' . $title .',description = '. $description.
+        ', datetime = '. $datetime . 'state = '. $state;
         $stmt = $conn->prepare($sql);
         $this->prepareValues($stmt);
         return $stmt->execute();
